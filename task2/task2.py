@@ -70,7 +70,6 @@ def main():
         result = point_position(circle, point)
         results.append(result)
 
-    print("Результаты:")
     for res in results:
         print(res)
 
