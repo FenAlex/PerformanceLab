@@ -17,7 +17,8 @@ def min_moves_to_equal(nums):
     return sum(abs(num - median) for num in nums)
 
 def main():
-    file_path = input("Введите путь к файлу с числами: ")
+    file_path = sys.argv[1] if len(sys.argv) > 1 else input("Введите путь к файлу с числами: ")
+    
     if not file_path:
         file_path = './task4/numbers.txt'
 

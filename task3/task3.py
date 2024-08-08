@@ -1,4 +1,5 @@
 import json
+import sys
 
 def get_file_path(prompt, default_path):
     file_path = input(prompt)
@@ -31,9 +32,14 @@ def create_result_file(tests, values, output_path):
         json.dump({"tests": tests}, f, indent=4)
 
 def main():
-    test_file_path = get_file_path("Введите путь к файлу с тестами: ", './task3/tests.json')
-    values_file_path = get_file_path("Введите путь к файлу с значениями: ", './task3/values.json')
-    result_file_path = get_file_path("Введите путь к файлу для сохранения результата: ", './task3/result.json')
+    test_file_path = sys.argv[1] if len(sys.argv) > 1 else './task3/tests.json'
+    values_file_path = sys.argv[2] if len(sys.argv) > 2 else './task3/values.json'
+    result_file_path = sys.argv[3] if len(sys.argv) > 3 else './task3/result.json'
+    
+    if len(sys.argv) < 4:
+        test_file_path = get_file_path("Введите путь к файлу с тестами: ", test_file_path)
+        values_file_path = get_file_path("Введите путь к файлу с значениями: ", values_file_path)
+        result_file_path = get_file_path("Введите путь к файлу для сохранения результата: ", result_file_path)
 
     tests = load_json(test_file_path)
     values = load_json(values_file_path)

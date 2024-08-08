@@ -1,6 +1,10 @@
-def get_circle_data():
+import sys
+
+def get_circle_data(circle_file):
     while True:
-        circle_file = input("Введите путь к файлу с данными о круге: ")
+        if not circle_file:
+            circle_file = input("Введите путь к файлу с данными о круге: ")
+
         if not circle_file:
             circle_file = './task2/circle.txt'
         
@@ -12,14 +16,17 @@ def get_circle_data():
             return (x, y, radius)
         except FileNotFoundError:
             print(f"Ошибка: Файл '{circle_file}' не найден. Пожалуйста, попробуйте снова.")
+            circle_file = input("Введите путь к файлу с данными о круге: ")
         except ValueError:
             print("Ошибка: Неверный формат данных в файле. Убедитесь, что координаты и радиус указаны правильно. Попробуйте снова.")
         except Exception as e:
             print(f"Произошла ошибка: {e}. Пожалуйста, попробуйте снова.")
 
-def get_points_data():
+def get_points_data(points_file):
     while True:
-        points_file = input("Введите путь к файлу с координатами точек: ")
+        if not points_file:
+            points_file = input("Введите путь к файлу с координатами точек: ")
+
         if not points_file:
             points_file = './task2/dot.txt'
         
@@ -32,11 +39,11 @@ def get_points_data():
             return points
         except FileNotFoundError:
             print(f"Ошибка: Файл '{points_file}' не найден. Пожалуйста, попробуйте снова.")
+            points_file = input("Введите путь к файлу с координатами точек: ")
         except ValueError:
             print("Ошибка: Неверный формат данных в файле. Убедитесь, что координаты указаны правильно. Попробуйте снова.")
         except Exception as e:
             print(f"Произошла ошибка: {e}. Пожалуйста, попробуйте снова.")
-
 
 def point_position(circle, point):
     x_center, y_center, radius = circle
@@ -52,8 +59,11 @@ def point_position(circle, point):
         return 2  # Точка снаружи
 
 def main():
-    circle = get_circle_data()
-    points = get_points_data()
+    circle_file = sys.argv[1] if len(sys.argv) > 1 else None
+    points_file = sys.argv[2] if len(sys.argv) > 2 else None
+
+    circle = get_circle_data(circle_file)
+    points = get_points_data(points_file)
 
     results = []
     for point in points:
