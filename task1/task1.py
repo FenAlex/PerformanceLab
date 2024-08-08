@@ -26,4 +26,6 @@ array = list(range(1, n + 1))
 
 result = get_path(array, m - 1)
 
-print(result)
+output = ''.join(map(str, result))
+
+print(output)
