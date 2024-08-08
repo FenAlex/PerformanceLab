@@ -24,7 +24,7 @@ def main():
 
     nums = read_numbers_from_file(file_path)
     moves = min_moves_to_equal(nums)
-    print(f"Минимальное количество ходов: {moves}")
+    print(moves)
 
 if __name__ == "__main__":
     main()
