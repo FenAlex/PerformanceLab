@@ -1,3 +1,5 @@
+import sys
+
 def get_path(array, m):
     path = []
     i = 0
@@ -10,11 +12,18 @@ def get_path(array, m):
 
     return path
 
-n = int(input("Введите число n: "))
-m = int(input("Введите число m: "))
+# Проверка наличия аргументов командной строки
+if len(sys.argv) == 3:
+    n = int(sys.argv[1])
+    m = int(sys.argv[2])
+elif len(sys.argv) == 1:
+    n = int(input("Пожалуйста, введите длину массива: "))
+    m = int(input("Пожалуйста, введите шаг: "))
+
+# Получение значений n и m из аргументов командной строки
 
 array = list(range(1, n + 1))
 
-result = get_path(array, m-1)
+result = get_path(array, m - 1)
 
 print(result)
